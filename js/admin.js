@@ -124,3 +124,10 @@ search.addEventListener("input", () => {
 refreshBtn.addEventListener("click", listele);
 
 listele();
+document
+.getElementById("excelBtn")
+.addEventListener("click", () => {
+
+    excelOlustur(kayitlar);
+
+});
