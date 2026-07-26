@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>Yönetici Paneli</title>
 
@@ -29,26 +30,44 @@
 
 <section class="card">
 
-<h2>Kayıtlar</h2>
+<h2>Kayıt Yönetimi</h2>
+
+<div class="remaining">
+
+<span>Toplam Kayıt</span>
+
+<strong id="totalCount">0 / 85</strong>
+
+</div>
+
+<div class="toolbar">
 
 <input
 id="search"
 type="text"
-placeholder="İsim veya T.C. Ara">
+placeholder="Ad Soyad veya T.C. Ara">
 
-<br><br>
+<button id="refreshBtn">
+Yenile
+</button>
 
-<table id="table">
+</div>
+
+<div class="tableBox">
+
+<table>
 
 <thead>
 
 <tr>
 
+<th>#</th>
 <th>Kayıt No</th>
 <th>Ad Soyad</th>
 <th>T.C.</th>
 <th>Telefon</th>
-<th>İşlem</th>
+<th>Cinsiyet</th>
+<th>Sil</th>
 
 </tr>
 
@@ -60,13 +79,17 @@ placeholder="İsim veya T.C. Ara">
 
 </table>
 
-<br>
+</div>
+
+<div class="actions">
 
 <button id="excelBtn">
 
 Excel'e Aktar
 
 </button>
+
+</div>
 
 </section>
 
@@ -75,4 +98,5 @@ Excel'e Aktar
 <script type="module" src="js/admin.js"></script>
 
 </body>
+
 </html>
