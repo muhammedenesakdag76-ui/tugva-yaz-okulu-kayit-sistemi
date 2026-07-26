@@ -1,78 +1,124 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
+import {
+  db
+} from "./firebase.js";
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+import {
+  collection,
+  getDocs,
+  deleteDoc,
+  doc
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-<title>Yönetici Paneli</title>
+const tbody = document.getElementById("tbody");
+const totalCount = document.getElementById("totalCount");
+const search = document.getElementById("search");
+const refreshBtn = document.getElementById("refreshBtn");
 
-<link rel="stylesheet" href="css/style.css">
+let kayitlar = [];
 
-</head>
+async function listele() {
 
-<body>
+    tbody.innerHTML = "";
 
-<header class="header">
+    const snapshot = await getDocs(collection(db, "kayitlar"));
 
-<div class="container">
+    kayitlar = [];
 
-<h1>Yönetici Paneli</h1>
+    snapshot.forEach((item) => {
 
-<p>TÜGVA Yaz Okulu Finali ve İstanbul Gezisi</p>
+        kayitlar.push({
+            id: item.id,
+            ...item.data()
+        });
 
-</div>
+    });
 
-</header>
+    kayitlar.sort((a, b) => {
 
-<main class="container">
+        if (!a.kayitNo || !b.kayitNo) return 0;
 
-<section class="card">
+        return a.kayitNo.localeCompare(b.kayitNo);
 
-<h2>Kayıtlar</h2>
+    });
 
-<input
-id="search"
-type="text"
-placeholder="İsim veya T.C. Ara">
+    tabloDoldur(kayitlar);
 
-<br><br>
+}
 
-<table id="table">
+function tabloDoldur(veriler) {
 
-<thead>
+    tbody.innerHTML = "";
+
+    totalCount.textContent = `${veriler.length} / 85`;
+
+    veriler.forEach((kisi, index) => {
+
+        tbody.innerHTML += `
 
 <tr>
 
-<th>Kayıt No</th>
-<th>Ad Soyad</th>
-<th>T.C.</th>
-<th>Telefon</th>
-<th>İşlem</th>
+<td>${index + 1}</td>
 
-</tr>
+<td>${kisi.kayitNo}</td>
 
-</thead>
+<td>${kisi.adSoyad}</td>
 
-<tbody id="tbody">
+<td>${kisi.tc}</td>
 
-</tbody>
+<td>${kisi.telefon}</td>
 
-</table>
+<td>${kisi.cinsiyet}</td>
 
-<br>
+<td>
 
-<button id="excelBtn">
+<button
+class="deleteBtn"
+data-id="${kisi.id}">
 
-Excel'e Aktar
+Sil
 
 </button>
 
-</section>
+</td>
 
-</main>
+</tr>
 
-<script type="module" src="js/admin.js"></script>
+`;
 
-</body>
-</html>
+    });
+
+    document.querySelectorAll(".deleteBtn").forEach(btn => {
+
+        btn.addEventListener("click", async () => {
+
+            if (!confirm("Bu kayıt silinsin mi?")) return;
+
+            await deleteDoc(doc(db, "kayitlar", btn.dataset.id));
+
+            await listele();
+
+        });
+
+    });
+
+}
+
+search.addEventListener("input", () => {
+
+    const kelime = search.value.toLowerCase();
+
+    const sonuc = kayitlar.filter(kisi =>
+
+        kisi.adSoyad.toLowerCase().includes(kelime) ||
+
+        kisi.tc.includes(kelime)
+
+    );
+
+    tabloDoldur(sonuc);
+
+});
+
+refreshBtn.addEventListener("click", listele);
+
+listele();
