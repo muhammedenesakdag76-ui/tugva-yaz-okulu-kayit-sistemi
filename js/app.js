@@ -1,3 +1,4 @@
+import { qrOlustur } from "./qr.js";
 import { formKontrol } from "./validation.js";
 import { kayitYap } from "./register.js";
 
