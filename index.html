@@ -15,47 +15,35 @@
 
 <body>
 
-<header>
+<header class="header">
 
-<div class="logoBox">
+<div class="container">
 
 <h1>TÜGVA</h1>
 
-<p>
-Yaz Okulu Finali ve İstanbul Gezisi
-</p>
+<p>Yaz Okulu Finali ve İstanbul Gezisi</p>
 
 </div>
 
 </header>
 
-<main>
+<main class="container">
 
-<section class="card">
+<section class="card" id="formCard">
 
 <h2>Kayıt Formu</h2>
 
-<p class="info">
-
-31 Temmuz 2026 tarihinde gerçekleştirilecek
-TÜGVA Yaz Okulu Finali ve İstanbul Gezisine
-katılmak için aşağıdaki formu doldurunuz.
-
-</p>
-
-<div class="counter">
+<div class="remaining">
 
 <span>Kalan Kontenjan</span>
 
-<strong id="remainingCount">
-85
-</strong>
+<strong id="remainingCount">85</strong>
 
 </div>
 
 <form id="registerForm">
 
-<div class="formGroup">
+<div class="input">
 
 <label>Ad Soyad</label>
 
@@ -67,20 +55,20 @@ required>
 
 </div>
 
-<div class="formGroup">
+<div class="input">
 
 <label>T.C. Kimlik No</label>
 
 <input
 id="tc"
-type="text"
 maxlength="11"
+type="text"
 placeholder="11 Haneli T.C."
 required>
 
 </div>
 
-<div class="formGroup">
+<div class="input">
 
 <label>Doğum Tarihi</label>
 
@@ -91,7 +79,7 @@ required>
 
 </div>
 
-<div class="formGroup">
+<div class="input">
 
 <label>Telefon</label>
 
@@ -103,29 +91,21 @@ required>
 
 </div>
 
-<div class="formGroup">
+<div class="input">
 
 <label>Cinsiyet</label>
 
 <select id="gender">
 
-<option value="">
-Seçiniz
-</option>
-
-<option value="Erkek">
-Erkek
-</option>
-
-<option value="Kadın">
-Kadın
-</option>
+<option value="">Seçiniz</option>
+<option value="Erkek">Erkek</option>
+<option value="Kadın">Kadın</option>
 
 </select>
 
 </div>
 
-<label class="checkbox">
+<label class="check">
 
 <input
 type="checkbox"
@@ -133,14 +113,13 @@ id="parent">
 
 <span>
 
-18 yaş altındaysam
-velim ile katılacağımı kabul ediyorum.
+18 yaş altındaysam velim ile katılacağımı kabul ediyorum.
 
 </span>
 
 </label>
 
-<label class="checkbox">
+<label class="check">
 
 <input
 type="checkbox"
@@ -148,16 +127,13 @@ id="kvkk">
 
 <span>
 
-KVKK Aydınlatma Metnini
-okudum ve kabul ediyorum.
+KVKK Aydınlatma Metnini okudum ve kabul ediyorum.
 
 </span>
 
 </label>
 
-<button
-type="submit"
-id="registerButton">
+<button type="submit">
 
 KAYDI TAMAMLA
 
@@ -168,36 +144,24 @@ KAYDI TAMAMLA
 </section>
 
 <section
-class="success hidden"
-id="successBox">
+class="card hidden"
+id="successCard">
 
-<h2>
-
-✅ Kayıt Başarılı
-
-</h2>
+<h2>Kayıt Başarılı</h2>
 
 <p>
 
-Kaydınız başarıyla oluşturuldu.
+Kayıt Numaranız
 
 </p>
 
-<p>
+<h1 id="registerNumber">
 
-Kayıt Numarası
+TYG-0001
 
-</p>
+</h1>
 
-<h3 id="registerNumber">
-
-TYG-0000
-
-</h3>
-
-<div id="qrCode">
-
-</div>
+<div id="qr"></div>
 
 <button id="newRegister">
 
@@ -208,16 +172,6 @@ Yeni Kayıt
 </section>
 
 </main>
-
-<footer>
-
-<p>
-
-© 2026 TÜGVA
-
-</p>
-
-</footer>
 
 <script type="module" src="js/app.js"></script>
 
