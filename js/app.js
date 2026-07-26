@@ -64,6 +64,7 @@ sonuc.kalanKontenjan;
 
 registerNumber.textContent =
 sonuc.kayitNo;
+await qrOlustur(sonuc.kayitNo);
 
 formCard.classList.add("hidden");
 
