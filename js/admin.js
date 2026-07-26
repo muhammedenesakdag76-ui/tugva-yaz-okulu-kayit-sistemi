@@ -1,3 +1,5 @@
+import { excelOlustur } from "./excel.js";
+
 import {
   db
 } from "./firebase.js";
